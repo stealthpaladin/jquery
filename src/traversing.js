@@ -121,6 +121,16 @@ jQuery.fn.extend({
 		return this.add( selector == null ?
 			this.prevObject : this.prevObject.filter(selector)
 		);
+	},
+	findExclude: function( selector, mask, result)
+	{
+		result = typeof result !== 'undefined' ? result : new jQuery();
+		this.children().not( mask ).each(function(){
+			t = jQuery(this);
+			if( t.is( selector ) ) result.push( this );
+			t.findExclude( selector, mask, result );
+		});
+		return result;
 	}
 });
 

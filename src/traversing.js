@@ -122,15 +122,15 @@ jQuery.fn.extend({
 			this.prevObject : this.prevObject.filter(selector)
 		);
 	},
-	findExclude: function( selector, mask, result)
+	findExclude: function( selector, mask, result )
 	{
 		result = typeof result !== 'undefined' ? result : new jQuery();
-		this.children().each(function(){
-			t = jQuery(this);
-			if( t.is( selector ) ) 
+		this.children().each( function(){
+			thisObject = jQuery( this );
+			if( thisObject.is( selector ) ) 
 				result.push( this );
-			if( !t.is( mask ))
-				t.findExclude( selector, mask, result );
+			if( !thisObject.is( mask ) )
+				thisObject.findExclude( selector, mask, result );
 		});
 		return result;
 	}
